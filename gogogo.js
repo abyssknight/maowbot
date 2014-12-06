@@ -1,6 +1,7 @@
 var five = require("johnny-five");
 var Spark = require("spark-io");
 var keypress = require("keypress");
+var Twitter = require('node-twitter');
 
 var board = new five.Board({
     io: new Spark({
@@ -35,60 +36,70 @@ board.on("ready", function() {
         maowBuzzer: maowBuzzer        
     });
 
-    var speed = 0.8;
-    function controller(ch, key) {
-        if (key) {
-          if (key.name === "space") {
+    var twitterStreamClient = new Twitter.StreamClient(
+        process.env.TWITTER_CONSUMER_KEY,
+        process.env.TWITTER_CONSUMER_SECRET,
+        process.env.TWITTER_TOKEN,
+        process.env.TWITTER_TOKEN_SECRET
+    );
+
+    twitterStreamClient.on('close', function() {
+        console.log('Connection closed.');
+    });
+
+    twitterStreamClient.on('end', function() {
+        console.log('End of Line.');
+    });
+
+    twitterStreamClient.on('error', function(error) {
+        console.log('Error: ' + (error.code ? error.code + ' ' + error.message : error.message));
+    });
+
+    twitterStreamClient.on('tweet', function(tweet) {
+        controller(tweet.text);
+        console.log(tweet.text);
+    });
+        
+    twitterStreamClient.start(['#maowrc2014']);
+        
+    var speed = 0.5;
+    
+    function controller(cmd) {
+        
+          if (cmd.indexOf("stop") > -1) {
             leftServo.stop();
             rightServo.stop();
           }
-          if (key.name === "up") {
+          if (cmd.indexOf("up") > -1) {
             leftServo.cw(speed);
             rightServo.ccw(speed);
           }
-          if (key.name === "down") {
+          if (cmd.indexOf("down") > -1) {
             leftServo.ccw(speed);
             rightServo.cw(speed);
           }
-          if (key.name === "right") {
+          if (cmd.indexOf("right") > -1) {
             leftServo.cw(speed * 0.75);
             rightServo.cw(speed * 0.75);
           }
-          if (key.name === "left") {
+          if (cmd.indexOf("left") > -1) {
             leftServo.ccw(speed * 0.75);
             rightServo.ccw(speed * 0.75);
           }
-          if (key.name === "f") {
+          if (cmd.indexOf("wagleft") > -1) {
             waveServo.min();            
           }
-          if (key.name === "d") {
+          if (cmd.indexOf("wagright") > -1) {
             waveServo.max();            
           }
-          if (key.name === "c") {
+          if (cmd.indexOf("center") > -1) {
             waveServo.center();            
           }
-          if (key.name === "g") {
+          if (cmd.indexOf("maowon") > -1) {
             maowBuzzer.pulse(500);
           }
-          if (key.name === "h") {
+          if (cmd.indexOf("maowoff") > -1) {
             maowBuzzer.stop().off();
-          }    
-            
-
-          commands = [].slice.call(arguments);
-        } else {
-          if (ch >= 1 && ch <= 9) {
-            speed = five.Fn.scale(ch, 1, 9, 0, 255);
-            controller.apply(null, commands);
-          }
-        }
-      }
-
-
-      keypress(process.stdin);
-
-      process.stdin.on("keypress", controller);
-      process.stdin.setRawMode(true);
-      process.stdin.resume();    
-    
+          }                      
+      }            
 });
