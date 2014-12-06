@@ -26,13 +26,16 @@ board.on("ready", function() {
         range: [0, 60]
     });
 
+    maowBuzzer = new five.Led("A7");
+    
     board.repl.inject({
         leftServo: leftServo,
         rightServer: rightServo,
-        waveServo: waveServo
+        waveServo: waveServo,
+        maowBuzzer: maowBuzzer        
     });
 
-    var speed = 0.5;
+    var speed = 0.8;
     function controller(ch, key) {
         if (key) {
           if (key.name === "space") {
@@ -63,6 +66,12 @@ board.on("ready", function() {
           }
           if (key.name === "c") {
             waveServo.center();            
+          }
+          if (key.name === "g") {
+            maowBuzzer.pulse(500);
+          }
+          if (key.name === "h") {
+            maowBuzzer.stop().off();
           }    
             
 
