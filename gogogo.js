@@ -20,10 +20,16 @@ board.on("ready", function() {
         pin: "D0",    
         type: "continuous"
     });    
+    
+    waveServo = new five.Servo({
+        pin: "D1",
+        range: [0, 60]
+    });
 
     board.repl.inject({
         leftServo: leftServo,
-        rightServer: rightServo
+        rightServer: rightServo,
+        waveServo: waveServo
     });
 
     var speed = 0.5;
@@ -49,6 +55,16 @@ board.on("ready", function() {
             leftServo.ccw(speed * 0.75);
             rightServo.ccw(speed * 0.75);
           }
+          if (key.name === "f") {
+            waveServo.min();            
+          }
+          if (key.name === "d") {
+            waveServo.max();            
+          }
+          if (key.name === "c") {
+            waveServo.center();            
+          }    
+            
 
           commands = [].slice.call(arguments);
         } else {
