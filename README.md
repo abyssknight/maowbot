@@ -1,6 +1,4 @@
 # MaowBot - Twitter Controlled Cat Robot
-=============
-
 This is my Robots Conf 2014 Project :D
 
 This is my simple node + spark-io + pawel sumo bot + (twitter, keypress, pebble) code.
