@@ -26,6 +26,10 @@ MaowBot currently supports the following commands:
 
 To send commands to MaowBot, just use the hashtag #maowrc2014 and put the command in the text of your tweet. 
 
+## Web Socket Interface 
+
+Run node maowbot-socket/index.js and use the GUI on http://127.0.0.1:3000 to control MaowBot.
+
 ## Pebble
 
 This is currently unsupported, at least until Watchbot's server is fixed. :)
