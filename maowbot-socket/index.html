@@ -2,24 +2,26 @@
 <html>
   <head>
     <title>MaowBot Control</title>
-    <style>
-        * { margin: 0; padding: 0;  }
-        form button { width: 100%; display: block;}
-    
-    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>       
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>      
     <form action="">
-      <input type="button" name="up" id="upbtn" value="Up" /></br>
-      <input type="button" name="down" id="downbtn" value="Down" /></br>
-      <input type="button" name="left" id="leftbtn" value="Left" /></br>
-      <input type="button" name="right" id="rightbtn" value="Right" /></br>
-      <input type="button" name="stop" id="stopbtn" value="Stop" /></br>
-      <input type="button" name="maowon" id="maowonbtn" value="Maow On" /></br>
-      <input type="button" name="maowoff" id="maowoffbtn" value="Maow Off" /></br>
-      <input type="button" name="wagleft" id="wagleftbtn" value="Wag Left" /></br>
-      <input type="button" name="wagright" id="wagrightbtn" value="Wag Right" /></br>
-      <input type="button" name="centertail" id="centertailbtn" value="Center Tail" /></br>                    
+      <input class="btn input-block-level form-control" type="button" name="up" id="upbtn" value="Up" /></br>
+      <input class="btn input-block-level form-control" type="button" name="down" id="downbtn" value="Down" /></br>
+      <input class="btn input-block-level form-control" type="button" name="left" id="leftbtn" value="Left" /></br>
+      <input class="btn input-block-level form-control" type="button" name="right" id="rightbtn" value="Right" /></br>
+      <input class="btn input-block-level form-control" type="button" name="stop" id="stopbtn" value="Stop" /></br>
+      <input class="btn input-block-level form-control" type="button" name="maowon" id="maowonbtn" value="Maow On" /></br>
+      <input class="btn input-block-level form-control" type="button" name="maowoff" id="maowoffbtn" value="Maow Off" /></br>
+      <input class="btn input-block-level form-control" type="button" name="wagleft" id="wagleftbtn" value="Wag Left" /></br>
+      <input class="btn input-block-level form-control" type="button" name="wagright" id="wagrightbtn" value="Wag Right" /></br>
+      <input class="btn input-block-level form-control" type="button" name="centertail" id="centertailbtn" value="Center Tail" /></br>                    
     </form>
       
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>

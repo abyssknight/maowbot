@@ -58,7 +58,7 @@ board.on("ready", function() {
         maowBuzzer: maowBuzzer        
     });
         
-    speed = 0.5;              
+    speed = 0.8;              
 });
 
 function controller(cmd) {
@@ -75,17 +75,17 @@ function controller(cmd) {
     leftServo.ccw(speed);
     rightServo.cw(speed);
   }
-  if (cmd.indexOf("wagleft") > -1) {
+  if (cmd.indexOf("wagleft") == 0) {
     waveServo.min();            
   }
-  if (cmd.indexOf("wagright") > -1) {
+  if (cmd.indexOf("wagright") == 0) {
     waveServo.max();            
   }    
-  if (cmd.indexOf("right") > -1) {
+  if (cmd.indexOf("right") == 0) {
     leftServo.cw(speed * 0.75);
     rightServo.cw(speed * 0.75);
   }
-  if (cmd.indexOf("left") > -1) {
+  if (cmd.indexOf("left") == 0) {
     leftServo.ccw(speed * 0.75);
     rightServo.ccw(speed * 0.75);
   }
