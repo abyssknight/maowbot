@@ -21,12 +21,21 @@ board.on("ready", function() {
         type: "continuous"
     });    
 
+    waveServo = new five.Servo({
+        pin: "D1",
+        range: [0, 60]
+    });    
+    
+    maowBuzzer = new five.Led("A7");
+    
     board.repl.inject({
         leftServo: leftServo,
-        rightServer: rightServo
+        rightServer: rightServo,
+        waveServo: waveServo,
+        maowBuzzer: maowBuzzer
     });
 
-    var speed = 0.5;
+    var speed = 0.8;
     function controller(ch, key) {
         if (key) {
           if (key.name === "space") {
@@ -49,6 +58,21 @@ board.on("ready", function() {
             leftServo.ccw(speed * 0.75);
             rightServo.ccw(speed * 0.75);
           }
+          if (key.name === "f") {
+            waveServo.min();            
+          }
+          if (key.name === "d") {
+            waveServo.max();            
+          }
+          if (key.name === "c") {
+            waveServo.center();            
+          }
+          if (key.name === "g") {
+            maowBuzzer.pulse(500);
+          }
+          if (key.name === "h") {
+            maowBuzzer.stop().off();
+           }
 
           commands = [].slice.call(arguments);
         } else {
