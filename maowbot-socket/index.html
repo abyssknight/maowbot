@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MaowBot Control</title>
+    <style>
+        * { margin: 0; padding: 0;  }
+        form button { width: 100%; display: block;}
+    
+    </style>
+  </head>
+  <body>      
+    <form action="">
+      <input type="button" name="up" id="upbtn" value="Up" /></br>
+      <input type="button" name="down" id="downbtn" value="Down" /></br>
+      <input type="button" name="left" id="leftbtn" value="Left" /></br>
+      <input type="button" name="right" id="rightbtn" value="Right" /></br>
+      <input type="button" name="stop" id="stopbtn" value="Stop" /></br>
+      <input type="button" name="maowon" id="maowonbtn" value="Maow On" /></br>
+      <input type="button" name="maowoff" id="maowoffbtn" value="Maow Off" /></br>
+      <input type="button" name="wagleft" id="wagleftbtn" value="Wag Left" /></br>
+      <input type="button" name="wagright" id="wagrightbtn" value="Wag Right" /></br>
+      <input type="button" name="centertail" id="centertailbtn" value="Center Tail" /></br>                    
+    </form>
+      
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+        
+      $('#upbtn').click(function(){          
+          socket.emit('maowbot control', "up");              
+          return false;
+      });
+        
+      $('#downbtn').click(function(){
+          socket.emit('maowbot control', "down");
+          return false;
+      });
+        
+      $('#leftbtn').click(function(){
+          socket.emit('maowbot control', "left");
+          return false;
+      });
+        
+      $('#rightbtn').click(function(){
+          socket.emit('maowbot control', "right");
+          return false;
+      });
+        
+      $('#stopbtn').click(function(){
+          socket.emit('maowbot control', "stop");
+          return false;
+      });
+        
+      $('#maowonbtn').click(function(){
+          socket.emit('maowbot control', "maowon");          
+          return false;
+      });
+        
+      $('#maowoffbtn').click(function(){
+          socket.emit('maowbot control', "maowoff");
+          return false;
+      });        
+        
+      $('#wagleftbtn').click(function(){
+          socket.emit('maowbot control', "wagleft");
+          return false;
+      });        
+        
+      $('#wagrightbtn').click(function(){
+          socket.emit('maowbot control', "wagright");
+          return false;
+      });        
+        
+      $('#centertailbtn').click(function(){
+          socket.emit('maowbot control', "center");
+          return false;
+      });                
+    </script>
+  </body>
+</html>
