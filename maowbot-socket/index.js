@@ -11,6 +11,20 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+
+//app.param('cmd');
+
+app.get('/api/:cmd', function(req, res){
+  try{
+      controller(req.params.cmd);
+      res.send("OK");
+  }
+  catch(e){
+      res.send("BAD");
+      console.log(e);
+  }
+});
+
 io.on('connection', function(socket){
   socket.on('maowbot control', function(msg){
     io.emit('maowbot control', msg);   
